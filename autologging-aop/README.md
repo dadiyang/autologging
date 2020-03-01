@@ -204,18 +204,21 @@ autolog:
 
 # 方法调用链追踪
 
-切面方法在执行的时候会生成一个唯一的 id，在同一个调用链路中的方法将拥有同一个 id，因此可以通过这个 id 来查看方法的调用链。
+切面方法在执行的时候会生成一个唯一的 id，在同一个调用链路中的方法将拥有同一个 id，因此可以通过这个 id 来查看方法的调用链，并且可以通过查看栈深度知道它们之间的调用关系。
 
 例如：
 
+`grep 121361440260956160 common.log`
+
 ```text
-dadiyangdeMacBook-Pro:logs dadiyang$ grep 38973078503424 server.log
-04-01 18:46:36.211 ERROR [http-nio-8081-exec-4] $Proxy180:46 - 38973078503424 - HttpApi: 发生异常, com.github.dadiyang.biz.httpinvoker.OppReadApi.getReleasePubOpps(["55",5]), 耗时: 3
-04-01 18:46:36.213 ERROR [http-nio-8081-exec-4] OpportunityReadServiceImpl:46 - 38973078503424 - Service: 发生异常, com.github.dadiyang.biz.service.opp.impl.OpportunityReadServiceImpl.getReleasePubOpps(["55",5]), 耗时: 6
-04-01 18:46:36.214 ERROR [http-nio-8081-exec-4] OppReadController:62 - 38973078503424 - 请求发生异常,  http://localhost:8081/oppRead/releasePubOpps/55 com.github.dadiyang.biz.controller.OppReadController.getReleasePubOpps(["55",5]), 耗时: 7
+2020-03-01 13:38:46.483  INFO 54635 --- [           main] c.g.d.a.c.l.LocalLogTraceListener        : 121361440260956160 | 2 | Repository |  | com.github.dadiyang.autologging.test.user.UserMapperFakeImpl | getById | [830293] | {"id":830293,"username":"张三"} | 4
+2020-03-01 13:38:46.484  INFO 54635 --- [           main] c.g.d.a.c.l.LocalLogTraceListener        : 121361440260956160 | 1 | Service |  | com.github.dadiyang.autologging.test.user.UserServiceImpl | getById | [830293] | {"id":830293,"username":"张三"} | 27
+2020-03-01 13:38:46.485  INFO 54635 --- [           main] c.g.d.a.c.l.LocalLogTraceListener        : 121361440260956160 | 0 | Controller | GET 127.0.0.1 http://localhost/user/getById   | com.github.dadiyang.autologging.test.user.UserController | getById | [830293] | {"id":830293,"username":"张三"} | 39
 ```
 
-从这个链路可以看出，OppReadController.getReleasePubOpps -调用-> OpportunityReadServiceImpl.getReleasePubOpps -调用-> OppReadApi.getReleasePubOpps
+从这个链路可以看出，UserController.getById -调用-> UserServiceImpl.getById -调用-> UserMapperFakeImpl.getById
+
+注: traceId 后面的数字是栈深度，0 代表入口
 
 # 扩展
 
