@@ -1,6 +1,16 @@
 # AutoLogging 监控日志框架
 
-本框架支持通过 AOP 对程序进行方法级别的监控和调用链路追踪，将监控信息打印到本地或通过 Kafka 消息上报
+**一个非常强大的监控日志输出框架**，主要功能包含
+
+* 方法**监控日志**输出
+* 应用内**调用链路追踪**
+
+可以通过
+
+* **SpringAOP**
+* **动态字节码运行时注入**
+
+两种方式引入，只要一个注解即可开启所有功能，而且具有强大的可扩展性
 
 # 背景
 
@@ -9,22 +19,23 @@
 ```java
 @GetMapping("{id}")
 public ReturnDTO<User> getById(int id) {
-    log.info("根据主键id获取权限, id: {}", id);
+    log.info("根据主键id查询用户, id: {}", id);
     long startTime = System.currentTimeMillis();
     try {
         ReturnDTO<User> rs =  ResultUtil.successResult(userService.getById(id));
-        log.debug("根据主键id获取权限成功, id: {}, 耗时: {}", id, (System.currentTimeMills() - startTime));
+        log.debug("根据主键id查询用户成功, id: {}, 耗时: {}", id, (System.currentTimeMills() - startTime));
         return rs;
     } catch (Exception e) {
-        log.error("据主键id获取权限发生异常, id: {}, 耗时: {}", id, (System.currentTimeMills() - startTime), e);
-        return ResultUtil.errorResult("据主键id获取权限发生异常, id: " + id);
+        log.error("据主键id查询用户发生异常, id: {}, 耗时: {}", id, (System.currentTimeMills() - startTime), e);
+        return ResultUtil.errorResult("据主键id查询用户发生异常, id: " + id);
     }
 }
 ```
 这种写法有以下几个问题：
-* 代码冗余，不易维护
-* 日志格式不统一，难以自动化分析
-* 容易遗漏或者写错日志信息
+
+* 代码冗余，**不易维护**
+* 日志格式不统一，**难以自动化分析**
+* 容易遗漏或者写错日志信息，**问题排查艰难**
 
 这些问题都给**开发、测试和线上排查问题造成困扰**
 
@@ -32,7 +43,7 @@ public ReturnDTO<User> getById(int id) {
 
 # 特点
 
-只需要添加 maven 依赖，然后给项目打上一个注解，就能开启所有功能，我们就可以去掉所有监控日志，由框架统一输出：
+只需要添加 maven 依赖，然后给全局打上一个注解，就能开启所有功能，我们就可以去掉所有监控日志，由框架统一输出：
 
 ```java
 @GetMapping("{id}")
@@ -42,8 +53,6 @@ public ReturnDTO<User> getById(int id) {
 ```
 
 自动日志框架会自动输出方法的监控日志
-
-通过 kafka 消息，我们可以将日志上报到 ElasticSearch 中，直接在 Kibana 中进行统一查看
 
 # 效果展示
 
