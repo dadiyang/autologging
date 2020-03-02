@@ -113,3 +113,8 @@ autolog:
 OK，搞定！启动之后应用中的各个切面方法执行的时候就会打印相关的日志了。
 
 更多配置项请查看：[autologging-aop](./autologging-aop)
+
+
+# 交个朋友
+
+![donation](./docimg/donation.png)

@@ -6,4 +6,4 @@ cd ../autologging-aop
 mvn clean install -DskipTests
 cd ../autologging-aop-jvm-sandbox
 mvn clean package -DskipTests  
-cp target/autologging-aop-jvm-sandbox-0.0.1-SNAPSHOT-jar-with-dependencies.jar ~/.opt/sandbox/module/
+cp target/autologging-aop-jvm-sandbox-1.0.0-jar-with-dependencies.jar ~/.opt/sandbox/module/

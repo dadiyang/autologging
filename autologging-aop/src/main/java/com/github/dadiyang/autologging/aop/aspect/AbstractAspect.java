@@ -50,6 +50,10 @@ public abstract class AbstractAspect {
 
     /**
      * 接管切面方法的执行过程，不拦截打了 com.github.dadiyang.aop.autologging.annotation.IgnoreLog 注解的类和方法
+     *
+     * @param joinPoint 连接点信息
+     * @return 目标方法执行结果
+     * @throws Throwable 目标方法抛出的任何异常
      */
     @Around(value = "pointcut() && !@within(com.github.dadiyang.autologging.aop.annotation.IgnoreLog) && !@annotation(com.github.dadiyang.autologging.aop.annotation.IgnoreLog)")
     public Object globalAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -187,6 +191,8 @@ public abstract class AbstractAspect {
 
     /**
      * 获取当前 traceId
+     *
+     * @return 当前 traceId
      */
     public static Long getTraceId() {
         return ID_THREAD_LOCAL.get();
@@ -194,6 +200,8 @@ public abstract class AbstractAspect {
 
     /**
      * 获取当前栈深度
+     *
+     * @return 当前栈深度
      */
     public static Integer getStackDepth() {
         return STACK_THREAD_LOCAL.get();

@@ -98,6 +98,7 @@ public class CommonLogJoinPointHandler implements JoinPointHandler {
      * <p>
      * 此方法的执行结果将会成为目标方法的结果，无论抛出异常还是正常返回
      *
+     * @param joinPointInfo 切点信息
      * @return 期望目标方法返回的值
      * @throws Throwable 目标方法抛出的异常
      */
@@ -112,6 +113,7 @@ public class CommonLogJoinPointHandler implements JoinPointHandler {
 
     /**
      * 通知监听器上报消息
+     * @param logTrace 日志实体信息
      */
     protected void postMsg(LogTrace logTrace) {
         try {

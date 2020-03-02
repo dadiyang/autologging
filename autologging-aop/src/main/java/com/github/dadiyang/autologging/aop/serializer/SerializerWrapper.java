@@ -60,7 +60,9 @@ public class SerializerWrapper {
     /**
      * 将入参打印成字符串
      *
+     * @param args    方法入参
      * @param fullMsg 是否只返回全部，否则返回摘要，摘要即只返回前 maxArgsLength 个字符
+     * @return 序列化后的字符串
      */
     public String argsToString(Object[] args, boolean fullMsg) {
         if (ArrayUtils.isEmpty(args)) {
@@ -143,6 +145,10 @@ public class SerializerWrapper {
 
     /**
      * 将返回值进行序列化
+     *
+     * @param obj     返回值
+     * @param fullMsg 是否全量（若为false则对生成的结果进行摘要）
+     * @return 序列化后的完整字符串或摘要
      */
     public String resultToString(Object obj, boolean fullMsg) {
         if (obj == null) {

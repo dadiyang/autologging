@@ -7,6 +7,30 @@
     <groupId>com.github.dadiyang</groupId>
     <artifactId>autologging-aop</artifactId>
     <version>1.0.0</version>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+    <licenses>
+        <license>
+            <name>Apache 2.0 License</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/dadiyang/autologging</url>
+        <connection>https://github.com/dadiyang/autologging.git</connection>
+        <developerConnection>https://github.com/dadiyang</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>Xuyang Huang</name>
+            <email>dadiyang@aliyun.com</email>
+            <url>https://github.com/dadiyang</url>
+        </developer>
+    </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.5.RELEASE</spring.version>

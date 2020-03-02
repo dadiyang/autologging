@@ -22,6 +22,9 @@ public class RequestUtils {
 
     /**
      * 从 request 中获取请求来源真实地址
+     *
+     * @param request 当前请求
+     * @return 真实来源地址
      */
     public static String getIpAddress(HttpServletRequest request) {
         if (request == null) {
@@ -58,6 +61,9 @@ public class RequestUtils {
 
     /**
      * 获取完整的请求路径, 包含 queryString
+     *
+     * @param request 当前请求
+     * @return 完整的请求路径
      */
     public static String getFullRequestUrl(HttpServletRequest request) {
         if (request == null) {
@@ -71,6 +77,10 @@ public class RequestUtils {
 
     /**
      * 获取完整的请求路径, 包含 queryString
+     *
+     * @param requestUrl  请求url
+     * @param queryString 请求参数
+     * @return 完整请求路径
      */
     public static String getFullRequestUrl(String requestUrl, String queryString) {
         if (StringUtils.isBlank(queryString) && StringUtils.isBlank(requestUrl)) {
@@ -85,6 +95,9 @@ public class RequestUtils {
 
     /**
      * 从 request 中获取当前用户凭证
+     *
+     * @param request 当前请求
+     * @return 用户凭证
      */
     public static String getUserPrincipal(HttpServletRequest request) {
         if (request == null) {
