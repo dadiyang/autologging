@@ -48,7 +48,7 @@
         <mybatis.version>3.5.0</mybatis.version>
         <http-api-invoker.version>1.1.1</http-api-invoker.version>
         <sandbox.version>1.2.0</sandbox.version>
-        <jackson.version>2.9.10.3</jackson.version>
+        <jackson.version>2.9.10.4</jackson.version>
         <logback.version>1.2.3</logback.version>
     </properties>
     <dependencies>
