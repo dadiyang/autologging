@@ -16,7 +16,7 @@ public class MarkLogAspect extends AbstractCommonLogAspect {
     private static final String MARK_LOG = "MarkLog";
 
     @Override
-    @Pointcut("@within(com.github.dadiyang.autologging.aop.annotation.EnableMarkLog) || @annotation(com.github.dadiyang.autologging.aop.annotation.EnableMarkLog)")
+    @Pointcut("@within(com.github.dadiyang.autologging.aop.annotation.MarkLog) || @annotation(com.github.dadiyang.autologging.aop.annotation.MarkLog)")
     public void pointcut() {
 
     }
